@@ -1,6 +1,8 @@
-package com.app.inventory;
+package com.app.inventory.infrastructure.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,11 +28,11 @@ public class UserEntity extends BaseEntity implements Auditable {
     private String password;
 
     @Column(name = "is_enabled", nullable = false)
-    private boolean isEnabled = true;
+    private boolean isEnabled;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
-    private RoleEntity role;
+    private RoleEntity role;*/
 
     @Column(name = "created_at", nullable = false)
     @CreationTimestamp

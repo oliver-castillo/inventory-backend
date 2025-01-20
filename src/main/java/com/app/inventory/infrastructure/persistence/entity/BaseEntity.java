@@ -1,4 +1,4 @@
-package com.app.inventory;
+package com.app.inventory.infrastructure.persistence.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
