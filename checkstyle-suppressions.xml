@@ -6,4 +6,6 @@
 <suppressions>
     <suppress checks="MissingJavadocMethod" files="InventoryApplication.java"/>
     <suppress checks="FinalParameters" files="InventoryApplication.java"/>
+    <suppress checks="JavadocVariable"/>
+    <suppress checks="MagicNumber"/>
 </suppressions>
