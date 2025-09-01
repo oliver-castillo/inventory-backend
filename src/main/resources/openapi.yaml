@@ -6,9 +6,10 @@ servers:
   - url: http://localhost:8080
 
 paths:
-  /sign-in:
+  /auth/sign-in:
     post:
       summary: Sign in
+      operationId: signIn
       requestBody:
         required: true
         content:
@@ -22,6 +23,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignInResponse'
+
+  /users:
+    post:
+      summary: Create user
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUserRequest'
+      responses:
+        '200':
+          description: Successful user creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
 
 components:
   schemas:
@@ -42,4 +61,27 @@ components:
           type: string
       example:
         token: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    NewUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: "test@example.com"
+        password: "password"
+        name: "John"
+        surname: "Doe"
+    OperationResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: "User created successfully"
 
