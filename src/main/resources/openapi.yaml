@@ -1,0 +1,45 @@
+openapi: 3.0.4
+info:
+  title: Inventory API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /sign-in:
+    post:
+      summary: Sign in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequest'
+      responses:
+        '200':
+          description: Successful sign in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+
+components:
+  schemas:
+    SignInRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: "test@example.com"
+        password: "password"
+    SignInResponse:
+      type: object
+      properties:
+        token:
+          type: string
+      example:
+        token: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+
