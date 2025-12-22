@@ -24,7 +24,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SignInResponse'
 
-  /users:
+  /users/create:
     post:
       summary: Create user
       operationId: createUser
@@ -41,6 +41,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OperationResponse'
+        '404':
+          description: Resource not found. In this case, the possible causes is that the role id does not exist in the database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
 
 components:
   schemas:
@@ -64,10 +70,12 @@ components:
     NewUserRequest:
       type: object
       properties:
-        name:
+        firstName:
           type: string
-        surname:
+        lastName:
           type: string
+        roleId:
+          type: integer
         email:
           type: string
         password:
@@ -84,4 +92,17 @@ components:
           type: string
       example:
         message: "User created successfully"
+    ExceptionResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      example:
+        error:
+          - "Resource not found"
+          - "Bad request"
+          - "Unauthorized"
+          - "Forbidden"
+          - "Server error"
+
 

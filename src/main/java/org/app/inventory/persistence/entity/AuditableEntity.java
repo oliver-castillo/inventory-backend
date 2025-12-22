@@ -1,4 +1,4 @@
-package org.app.inventory.persistence.model.entity;
+package org.app.inventory.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -7,9 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -31,11 +29,11 @@ public abstract class AuditableEntity extends BaseEntity {
   @Column(name = "\"UPDATED_AT\"", nullable = false)
   private Instant updatedAt;
 
-  @CreatedBy
+  /*@CreatedBy
   @Column(name = "\"CREATED_BY\"", nullable = false)
-  private String createdBy;
+  private String createdBy;*/
 
-  @LastModifiedBy
+  /*@LastModifiedBy
   @Column(name = "\"UPDATED_BY\"", nullable = false)
-  private String updatedBy;
+  private String updatedBy;*/
 }
