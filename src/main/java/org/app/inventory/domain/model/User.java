@@ -1,15 +1,23 @@
 package org.app.inventory.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
-public record User(
-    Long id,
-    String firstName,
-    String lastName,
-    String email,
-    String password,
-    Role role,
-    Boolean isEnabled,
-    List<Business> businesses
-) {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+  private Long id;
+  private String firstName;
+  private String lastName;
+  private String email;
+  private String password;
+  private Role role;
+  private Boolean isEnabled;
+  private List<Business> businesses;
 }

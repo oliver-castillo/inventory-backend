@@ -1,21 +1,19 @@
 package org.app.inventory.persistence.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "\"AUTHORIZATIONS\"")
-public class AuthorizationEntity {
+@Table(name = "\"PERMISSIONS\"")
+public class PermissionEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "\"ID\"", nullable = false)
@@ -29,4 +27,7 @@ public class AuthorizationEntity {
   @NotNull
   @Column(name = "\"IS_ENABLED\"", nullable = false)
   private Boolean isEnabled = false;
+
+  @ManyToMany(mappedBy = "permissions")
+  private Set<RoleEntity> roles = new LinkedHashSet<>();
 }

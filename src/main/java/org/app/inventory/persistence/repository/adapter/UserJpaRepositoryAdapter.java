@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.app.inventory.config.exception.NotFoundException;
 import org.app.inventory.domain.model.User;
 import org.app.inventory.domain.repository.UserRepository;
-import org.app.inventory.persistence.entity.RoleEntity;
 import org.app.inventory.persistence.entity.UserEntity;
 import org.app.inventory.persistence.repository.RoleJpaRepository;
 import org.app.inventory.persistence.repository.UserJpaRepository;
@@ -20,10 +19,14 @@ public class UserJpaRepositoryAdapter implements UserRepository {
 
   @Override
   public UserEntity createUser(User user) {
-    UserEntity userEntity = userMapper.domainToEntity(user);
-    RoleEntity roleEntity = roleJpaRepository.findById(user.role().id().longValue())
-        .orElseThrow(() -> new NotFoundException("Role"));
-    userEntity.setRole(roleEntity);
+    UserEntity userEntity = userMapper.domainToNewEntity(user);
+    verifyRoleExistence(userEntity.getRole().getId());
     return userJpaRepository.save(userEntity);
+  }
+
+  private void verifyRoleExistence(Long id) {
+    if (!roleJpaRepository.existsById(id)) {
+      throw new NotFoundException("role");
+    }
   }
 }

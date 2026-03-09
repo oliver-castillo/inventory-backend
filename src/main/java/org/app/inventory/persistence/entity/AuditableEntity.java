@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.Instant;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
@@ -28,12 +30,4 @@ public abstract class AuditableEntity extends BaseEntity {
   @NotNull
   @Column(name = "\"UPDATED_AT\"", nullable = false)
   private Instant updatedAt;
-
-  /*@CreatedBy
-  @Column(name = "\"CREATED_BY\"", nullable = false)
-  private String createdBy;*/
-
-  /*@LastModifiedBy
-  @Column(name = "\"UPDATED_BY\"", nullable = false)
-  private String updatedBy;*/
 }

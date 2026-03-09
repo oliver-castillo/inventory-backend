@@ -1,10 +1,18 @@
 package org.app.inventory.domain.model;
 
-public record Product(
-    Long id,
-    String name,
-    String description,
-    Double price,
-    Long businessId
-) {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Product {
+  private Long id;
+  private String name;
+  private String description;
+  private Double price;
+  private Long businessId;
 }

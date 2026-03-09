@@ -1,7 +1,15 @@
 package org.app.inventory.domain.model;
 
-public record Role(
-    Integer id,
-    String name
-) {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Role {
+  private Integer id;
+  private String name;
 }
